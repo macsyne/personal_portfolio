@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxene Victor - Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #10b981 #1a1a1a;
+        }
+        
+        *::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        *::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        *::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 4px;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+        
+        .futuristic-font {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .glow-green {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        }
+        
+        .glow-purple {
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+        }
+        
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 10px currentColor;
+        }
+        
+        .geometric-shape {
+            position: absolute;
+            border: 2px solid;
+            opacity: 0.3;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
+            to { box-shadow: 0 0 30px rgba(16, 185, 129, 0.8); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .skill-bar {
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            height: 4px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+        
+        .typewriter-cursor {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Matrix Background -->
+    <canvas class="matrix-bg" id="matrix"></canvas>
+    
+    <!-- Geometric Shapes -->
+    <div class="geometric-shape w-20 h-20 top-20 right-20 border-green-400 rotate-45 floating"></div>
+    <div class="geometric-shape w-16 h-16 top-1/2 left-10 border-purple-500 rounded-full floating" style="animation-delay: -2s;"></div>
+    <div class="geometric-shape w-12 h-12 bottom-32 right-1/4 border-blue-400 floating" style="animation-delay: -4s;"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-80 backdrop-blur-sm border-b border-green-400 border-opacity-30">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="futuristic-font text-2xl font-bold text-green-400 text-glow">MJV</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link text-gray-300 hover:text-green-400">About</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-green-400">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-green-400">Projects</a>
+                    <a href="#education" class="nav-link text-gray-300 hover:text-green-400">Education</a>
+                    <a href="#experience" class="nav-link text-gray-300 hover:text-green-400">Experience</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-green-400">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative">
+        <div class="text-center z-10 slide-in">
+            <!-- Profile Photo Section -->
+            <div class="mb-8">
+                <div id="hero-photo-container" class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-green-400 border-opacity-50 bg-black bg-opacity-30 flex items-center justify-center cursor-pointer hover:border-opacity-80 transition-all duration-300 group glow-green">
+                    <div id="hero-photo-placeholder" class="text-center">
+                        <div class="text-3xl mb-1 group-hover:scale-110 transition-transform duration-300">👤</div>
+                        <p class="text-green-400 futuristic-font text-xs">UPLOAD</p>
+                        <p class="text-gray-400 text-xs">PHOTO</p>
+                    </div>
+                    <img id="hero-uploaded-photo" class="w-full h-full object-cover hidden" alt="Profile Photo">
+                </div>
+                <input type="file" id="hero-photo-input" accept="image/*" class="hidden">
+                
+                <!-- Hero Photo Controls -->
+                <div id="hero-photo-controls" class="mt-3 flex justify-center space-x-2 opacity-0 transition-opacity duration-300">
+                    <button id="hero-change-photo" class="px-3 py-1 bg-green-500 bg-opacity-20 border border-green-400 rounded text-green-400 text-xs hover:bg-opacity-40 transition-all duration-300 futuristic-font">
+                        CHANGE
+                    </button>
+                    <button id="hero-remove-photo" class="px-3 py-1 bg-red-500 bg-opacity-20 border border-red-400 rounded text-red-400 text-xs hover:bg-opacity-40 transition-all duration-300 futuristic-font">
+                        REMOVE
+                    </button>
+                </div>
+            </div>
+            
+            <h1 class="futuristic-font text-6xl md:text-8xl font-black mb-6">
+                <span class="text-green-400 text-glow">MAXENE</span>
+                <span class="text-blue-400 text-glow"> VICTOR</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                <span id="typewriter-role"></span><span class="typewriter-cursor">|</span>
+            </p>
+            <div class="text-lg text-green-400 futuristic-font mb-12">
+                <span id="typewriter-tagline"></span><span class="typewriter-cursor">_</span>
+            </div>
+            <button class="bg-gradient-to-r from-green-500 to-blue-500 px-8 py-4 rounded-lg font-semibold hover:from-green-400 hover:to-blue-400 transition-all duration-300 glow-green">
+                Explore My Work
+            </button>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="futuristic-font text-4xl md:text-5xl font-bold text-center mb-16 text-green-400 text-glow">
+                &lt; ABOUT_ME /&gt;
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        I'm a passionate software engineer with a love for creating innovative digital solutions. 
+                        My journey in programming began with curiosity and has evolved into a mission to build 
+                        technology that makes a difference.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        Specializing in full-stack development, I thrive on solving complex problems and 
+                        turning ideas into reality through clean, efficient code.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <span class="px-4 py-2 bg-green-500 bg-opacity-20 border border-green-400 rounded-lg text-green-400">Problem Solver</span>
+                        <span class="px-4 py-2 bg-purple-500 bg-opacity-20 border border-purple-400 rounded-lg text-purple-400">Innovation Driven</span>
+                        <span class="px-4 py-2 bg-blue-500 bg-opacity-20 border border-blue-400 rounded-lg text-blue-400">Team Player</span>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="w-80 h-80 mx-auto bg-gradient-to-br from-green-400 via-purple-500 to-blue-500 rounded-lg opacity-20 pulse-glow"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-72 h-72 rounded-lg bg-black bg-opacity-30 border-2 border-green-400 border-opacity-50 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-6xl mb-4 text-green-400">⚡</div>
+                                <p class="text-green-400 futuristic-font text-lg">INNOVATION</p>
+                                <p class="text-gray-400 text-sm mt-2">Driven by Technology</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-gray-900 bg-opacity-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="futuristic-font text-4xl md:text-5xl font-bold text-center mb-16 text-purple-400 text-glow">
+                &lt; SKILLS /&gt;
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-green-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300">
+                    <h3 class="futuristic-font text-xl font-bold text-green-400 mb-4">Frontend</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300">React</span>
+                                <span class="text-green-400">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="skill-bar w-[95%] h-1 rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300">JavaScript</span>
+                                <span class="text-green-400">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="skill-bar w-[90%] h-1 rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300">CSS/Tailwind</span>
+                                <span class="text-green-400">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="skill-bar w-[88%] h-1 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-purple-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300">
+                    <h3 class="futuristic-font text-xl font-bold text-purple-400 mb-4">Backend</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300">Node.js</span>
+                                <span class="text-purple-400">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="skill-bar w-[85%] h-1 rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300">Python</span>
+                                <span class="text-purple-400">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="skill-bar w-[92%] h-1 rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300">Databases</span>
+                                <span class="text-purple-400">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="skill-bar w-[80%] h-1 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-blue-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300">
+                    <h3 class="futuristic-font text-xl font-bold text-blue-400 mb-4">Tools & Others</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300">Git</span>
+                                <span class="text-blue-400">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="skill-bar w-[90%] h-1 rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300">Docker</span>
+                                <span class="text-blue-400">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="skill-bar w-[75%] h-1 rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-300">AWS</span>
+                                <span class="text-blue-400">70%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1">
+                                <div class="skill-bar w-[70%] h-1 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="futuristic-font text-4xl md:text-5xl font-bold text-center mb-16 text-blue-400 text-glow">
+                &lt; PROJECTS /&gt;
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card p-6 rounded-lg">
+                    <div class="text-3xl mb-4">🚀</div>
+                    <h3 class="futuristic-font text-xl font-bold text-green-400 mb-3">AI Task Manager</h3>
+                    <p class="text-gray-300 mb-4">Intelligent task management system with AI-powered prioritization and scheduling.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-green-500 bg-opacity-20 text-green-400 text-sm rounded">React</span>
+                        <span class="px-2 py-1 bg-purple-500 bg-opacity-20 text-purple-400 text-sm rounded">Python</span>
+                        <span class="px-2 py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-sm rounded">TensorFlow</span>
+                    </div>
+                    <button class="text-green-400 hover:text-green-300 font-semibold">View Project →</button>
+                </div>
+                
+                <div class="project-card p-6 rounded-lg">
+                    <div class="text-3xl mb-4">🌐</div>
+                    <h3 class="futuristic-font text-xl font-bold text-purple-400 mb-3">Blockchain Voting</h3>
+                    <p class="text-gray-300 mb-4">Secure, transparent voting system built on blockchain technology.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-green-500 bg-opacity-20 text-green-400 text-sm rounded">Solidity</span>
+                        <span class="px-2 py-1 bg-purple-500 bg-opacity-20 text-purple-400 text-sm rounded">Web3</span>
+                        <span class="px-2 py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-sm rounded">React</span>
+                    </div>
+                    <button class="text-purple-400 hover:text-purple-300 font-semibold">View Project →</button>
+                </div>
+                
+                <div class="project-card p-6 rounded-lg">
+                    <div class="text-3xl mb-4">📱</div>
+                    <h3 class="futuristic-font text-xl font-bold text-blue-400 mb-3">Neural Network Visualizer</h3>
+                    <p class="text-gray-300 mb-4">Interactive tool for visualizing and understanding neural network architectures.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-green-500 bg-opacity-20 text-green-400 text-sm rounded">D3.js</span>
+                        <span class="px-2 py-1 bg-purple-500 bg-opacity-20 text-purple-400 text-sm rounded">Python</span>
+                        <span class="px-2 py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-sm rounded">Flask</span>
+                    </div>
+                    <button class="text-blue-400 hover:text-blue-300 font-semibold">View Project →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section id="education" class="py-20 px-6 bg-gray-900 bg-opacity-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="futuristic-font text-4xl md:text-5xl font-bold text-center mb-16 text-purple-400 text-glow">
+                &lt; EDUCATION /&gt;
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-black bg-opacity-50 p-8 rounded-lg border-2 border-purple-400 border-opacity-50 hover:border-opacity-80 transition-all duration-300 glow-purple">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
+                        <div>
+                            <h3 class="futuristic-font text-2xl font-bold text-purple-400 mb-2">Bachelor of Science in Computer Science</h3>
+                            <p class="text-green-400 font-semibold text-lg">Dr. Emilio B. Espinosa Sr. Memorial State College of Agriculture and Technology</p>
+                            <p class="text-blue-400 font-mono text-sm mt-1">(DEBESMSCAT)</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 text-right">
+                            <span class="text-green-400 font-mono text-lg">2022 - 2027</span>
+                            <div class="text-purple-400 text-sm mt-1">Expected Graduation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <h4 class="text-green-400 font-semibold mb-3 futuristic-font">Core Subjects</h4>
+                            <ul class="text-gray-300 space-y-2">
+                                <li class="flex items-center"><span class="text-green-400 mr-2">▶</span>Data Structures & Algorithms</li>
+                                <li class="flex items-center"><span class="text-green-400 mr-2">▶</span>Software Engineering</li>
+                                <li class="flex items-center"><span class="text-green-400 mr-2">▶</span>Database Management Systems</li>
+                                <li class="flex items-center"><span class="text-green-400 mr-2">▶</span>Computer Networks</li>
+                                <li class="flex items-center"><span class="text-green-400 mr-2">▶</span>Web Development</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-blue-400 font-semibold mb-3 futuristic-font">Specializations</h4>
+                            <ul class="text-gray-300 space-y-2">
+                                <li class="flex items-center"><span class="text-blue-400 mr-2">▶</span>Full-Stack Development</li>
+                                <li class="flex items-center"><span class="text-blue-400 mr-2">▶</span>Mobile App Development</li>
+                                <li class="flex items-center"><span class="text-blue-400 mr-2">▶</span>System Analysis & Design</li>
+                                <li class="flex items-center"><span class="text-blue-400 mr-2">▶</span>Artificial Intelligence</li>
+                                <li class="flex items-center"><span class="text-blue-400 mr-2">▶</span>Cybersecurity Fundamentals</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-purple-400 border-opacity-30 pt-4">
+                        <p class="text-gray-300 leading-relaxed">
+                            Comprehensive education in computer science fundamentals, software development methodologies, 
+                            and emerging technologies. Gained hands-on experience through practical projects and collaborative 
+                            learning environments that prepared me for real-world software engineering challenges.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="futuristic-font text-4xl md:text-5xl font-bold text-center mb-16 text-green-400 text-glow">
+                &lt; EXPERIENCE /&gt;
+            </h2>
+            <div class="space-y-8">
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border-l-4 border-green-400">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="futuristic-font text-xl font-bold text-green-400">Senior Software Engineer</h3>
+                            <p class="text-purple-400 font-semibold">TechCorp Solutions</p>
+                        </div>
+                        <span class="text-blue-400 font-mono">2022 - Present</span>
+                    </div>
+                    <p class="text-gray-300">Leading development of scalable web applications and mentoring junior developers. Implemented microservices architecture resulting in 40% performance improvement.</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border-l-4 border-purple-400">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="futuristic-font text-xl font-bold text-purple-400">Full Stack Developer</h3>
+                            <p class="text-green-400 font-semibold">InnovateLab</p>
+                        </div>
+                        <span class="text-blue-400 font-mono">2020 - 2022</span>
+                    </div>
+                    <p class="text-gray-300">Developed and maintained multiple client projects using React, Node.js, and cloud technologies. Collaborated with cross-functional teams to deliver high-quality solutions.</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border-l-4 border-blue-400">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="futuristic-font text-xl font-bold text-blue-400">Software Developer</h3>
+                            <p class="text-purple-400 font-semibold">StartupXYZ</p>
+                        </div>
+                        <span class="text-green-400 font-mono">2018 - 2020</span>
+                    </div>
+                    <p class="text-gray-300">Built responsive web applications and RESTful APIs. Gained experience in agile development methodologies and modern JavaScript frameworks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-gray-900 bg-opacity-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="futuristic-font text-4xl md:text-5xl font-bold mb-16 text-purple-400 text-glow">
+                &lt; CONTACT /&gt;
+            </h2>
+            <p class="text-xl text-gray-300 mb-12">Ready to build something amazing together?</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-green-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="futuristic-font text-lg font-bold text-green-400 mb-2">Email</h3>
+                    <p class="text-gray-300">maxene.victor@email.com</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-purple-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </div>
+                    <h3 class="futuristic-font text-lg font-bold text-purple-400 mb-2">LinkedIn</h3>
+                    <p class="text-gray-300">linkedin.com/in/maxenevictor</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-blue-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <h3 class="futuristic-font text-lg font-bold text-blue-400 mb-2">GitHub</h3>
+                    <p class="text-gray-300">github.com/maxenevictor</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-green-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </div>
+                    <h3 class="futuristic-font text-lg font-bold text-green-400 mb-2">Facebook</h3>
+                    <p class="text-gray-300">facebook.com/maxenevictor</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-purple-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </div>
+                    <h3 class="futuristic-font text-lg font-bold text-purple-400 mb-2">Instagram</h3>
+                    <p class="text-gray-300">@maxenevictor</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-blue-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </div>
+                    <h3 class="futuristic-font text-lg font-bold text-blue-400 mb-2">Twitter</h3>
+                    <p class="text-gray-300">@maxenevictor</p>
+                </div>
+            </div>
+            
+            <button class="bg-gradient-to-r from-purple-500 to-blue-500 px-8 py-4 rounded-lg font-semibold hover:from-purple-400 hover:to-blue-400 transition-all duration-300 glow-purple futuristic-font">
+                GET IN TOUCH
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-green-400 border-opacity-30">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400 futuristic-font">© 2024 Maxene Victor. Crafted with 💚 and lots of ☕</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Enhanced Matrix Rain Effect with Code Elements
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Enhanced code-rain elements with programming syntax
+        const codeElements = [
+            // JavaScript/Programming Keywords
+            "function", "const", "let", "var", "if", "else", "for", "while", "return", "class",
+            "import", "export", "async", "await", "try", "catch", "new", "this", "null", "true",
+            "false", "undefined", "typeof", "instanceof", "extends", "super", "static", "public",
+            "private", "protected", "interface", "enum", "namespace", "module", "require",
+            
+            // Common Functions & Methods
+            "console.log", "document", "window", "Array", "Object", "String", "Number", "Boolean",
+            "Promise", "setTimeout", "setInterval", "addEventListener", "querySelector", "fetch",
+            "JSON.parse", "JSON.stringify", "Math.random", "Date.now", "localStorage", "sessionStorage",
+            
+            // Operators & Symbols
+            "=>", "===", "!==", ">=", "<=", "&&", "||", "??", "++", "--", "+=", "-=", "*=", "/=",
+            "...", "?.", "!!", "typeof", "delete", "in", "of", "instanceof",
+            
+            // Brackets & Punctuation
+            "{", "}", "[", "]", "(", ")", ";", ":", ".", ",", "=", "+", "-", "*", "/", "%",
+            "<", ">", "!", "?", "&", "|", "^", "~", "@", "#", "$", "`", "'", '"',
+            
+            // Data Types & Values
+            "string", "number", "boolean", "object", "array", "null", "undefined", "NaN", "Infinity",
+            "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "100", "1000",
+            
+            // HTML/CSS Elements
+            "div", "span", "class", "id", "style", "href", "src", "alt", "title", "data-",
+            "px", "rem", "em", "%", "vh", "vw", "flex", "grid", "absolute", "relative",
+            
+            // Common Variable Names
+            "data", "result", "response", "error", "user", "item", "index", "length", "value",
+            "name", "id", "type", "status", "config", "options", "params", "args",
+            
+            // Matrix-style Characters
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+            "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "λ", "μ", "π", "σ", "φ", "ψ", "ω",
+            
+            // Binary & Hex
+            "0x", "0b", "FF", "00", "11", "101", "010", "111", "000", "0xFF", "0x00",
+            
+            // Special Programming Symbols
+            "//", "/*", "*/", "<!--", "-->", "<?", "?>", "<%", "%>", "${", "#{", "::"];
+        
+        const fontSize = 12;
+        const columns = Math.floor(canvas.width / fontSize);
+        
+        const drops = [];
+        const colors = ['#10b981', '#3b82f6', '#8b5cf6', '#06b6d4', '#84cc16'];
+        
+        for(let x = 0; x < columns; x++) {
+            drops[x] = {
+                y: Math.random() * canvas.height,
+                speed: Math.random() * 3 + 1,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                opacity: Math.random() * 0.6 + 0.4
+            };
+        }
+        
+        function drawMatrix() {
+            // Create trailing effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.font = fontSize + 'px "Courier New", monospace';
+            
+            for(let i = 0; i < drops.length; i++) {
+                const drop = drops[i];
+                
+                // Set color with opacity
+                ctx.fillStyle = drop.color + Math.floor(drop.opacity * 255).toString(16).padStart(2, '0');
+                
+                // Choose random code element
+                const text = codeElements[Math.floor(Math.random() * codeElements.length)];
+                
+                // Draw the text
+                ctx.fillText(text, i * fontSize, drop.y);
+                
+                // Move drop down
+                drop.y += drop.speed;
+                
+                // Reset drop when it goes off screen
+                if(drop.y > canvas.height && Math.random() > 0.98) {
+                    drop.y = 0;
+                    drop.speed = Math.random() * 3 + 1;
+                    drop.color = colors[Math.floor(Math.random() * colors.length)];
+                    drop.opacity = Math.random() * 0.6 + 0.4;
+                }
+            }
+        }
+        
+        setInterval(drawMatrix, 50);
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+
+        
+        // Hero Photo Upload Functionality
+        const heroPhotoContainer = document.getElementById('hero-photo-container');
+        const heroPhotoInput = document.getElementById('hero-photo-input');
+        const heroPhotoPlaceholder = document.getElementById('hero-photo-placeholder');
+        const heroUploadedPhoto = document.getElementById('hero-uploaded-photo');
+        const heroPhotoControls = document.getElementById('hero-photo-controls');
+        const heroChangePhotoBtn = document.getElementById('hero-change-photo');
+        const heroRemovePhotoBtn = document.getElementById('hero-remove-photo');
+        
+
+        
+        // Hero Photo Event Handlers
+        // Click to upload hero photo
+        heroPhotoContainer.addEventListener('click', () => {
+            heroPhotoInput.click();
+        });
+        
+        // Handle hero photo file selection
+        heroPhotoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    heroUploadedPhoto.src = e.target.result;
+                    heroPhotoPlaceholder.classList.add('hidden');
+                    heroUploadedPhoto.classList.remove('hidden');
+                    heroPhotoControls.classList.remove('opacity-0');
+                    heroPhotoControls.classList.add('opacity-100');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Change hero photo button
+        heroChangePhotoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            heroPhotoInput.click();
+        });
+        
+        // Remove hero photo button
+        heroRemovePhotoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            heroUploadedPhoto.classList.add('hidden');
+            heroPhotoPlaceholder.classList.remove('hidden');
+            heroPhotoControls.classList.add('opacity-0');
+            heroPhotoControls.classList.remove('opacity-100');
+            heroPhotoInput.value = '';
+        });
+        
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0s';
+                    entry.target.classList.add('slide-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Typewriter Effect
+        function typeWriter(element, text, speed = 100, callback = null) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    setTimeout(callback, 500); // Wait before starting next animation
+                }
+            }
+            
+            type();
+        }
+        
+        // Start typewriter animations when page loads
+        window.addEventListener('load', () => {
+            const roleElement = document.getElementById('typewriter-role');
+            const taglineElement = document.getElementById('typewriter-tagline');
+            
+            // First animate the role
+            typeWriter(roleElement, 'Software Engineer & Programmer', 80, () => {
+                // Then animate the tagline
+                typeWriter(taglineElement, '> Building the future, one line of code at a time', 60);
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9805044737fbbc39',t:'MTc1ODA3NDQ5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
